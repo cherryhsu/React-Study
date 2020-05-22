@@ -46,9 +46,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: '', list: [] };
-
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleAdd = this.handleAdd.bind(this);
   }
 
   handleChange = (event) => {
