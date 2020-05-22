@@ -1,16 +1,18 @@
 import React from 'react'
 import { Button } from 'antd';
-import { Link } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import 'antd/dist/antd.css'
 
 
 export default function Detail() {
+    const params = useParams()
+    const history = useHistory()
     return <div class="container">
         <h1>this is detail</h1>
-        <Link to="/login">点击跳转到登录页面</Link>
-        <br />
-        <Link to="/home">点击跳转到首页</Link>
-        <br />
+        <p>当前的参数id为：{params.id}</p>
+        <Button type="primary" onClick={() => {
+            history.push('/')
+        }}>跳转登录</Button>
     </div>
 }
 //有状态组件可以去到this作用域
@@ -20,12 +22,9 @@ export default function Detail() {
 //     }
 //     render() {
 //         return <div className="container">
-//             <h1>welcome</h1>
-//             <Link to="/login">点击跳转到登录页面</Link>
-//             <br />
-//             <Link to="/home">点击跳转到首页</Link>
-//             <br />
+//             <h1>welcome detail</h1>
+//             <p>当前的参数id为：{this.props.match.params.id}</p>
 //             <Button type="primary" onClick={this.jump}>跳转登录</Button>
 //         </div>
 //     }
-//}
+// }
