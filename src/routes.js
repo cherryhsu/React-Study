@@ -21,6 +21,7 @@ import Index from "./pages/admin/dashboard/index"
 import ProductList from "./pages/admin/products/List"
 import ProductEdit from "./pages/admin/products/Edit"
 import PageNotFind from "./pages/404"
+import { IconMap } from "antd/lib/result"
 export const mainRoutes = [{
     path: "/login",
     component: Login
@@ -31,12 +32,19 @@ export const mainRoutes = [{
 
 export const adminRoutes = [{
     path: '/admin/dashboard',
-    component: Index
+    component: Index,
+    isShow: true,
+    title: '看板',
+    icon:'area-chart'
 }, {
     path: '/admin/products',
     component: ProductList,
-    exact: true
+    isShow: true,
+    exact: true,
+    title: "商品管理",
+    icon:"shop"
 }, {
     path: '/admin/products/edit/:id',
-    component: ProductEdit
+    component: ProductEdit,
+    isShow: false,
 }]

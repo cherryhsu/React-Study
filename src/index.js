@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import './index.css';
-import { mainRoutes, adminRoutes } from './router';
+import App from './App'
+import { mainRoutes } from './routes';
 import * as serviceWorker from './serviceWorker';
-import { Switch } from 'antd';
 
+/* 打开以admin为路由的组件时 外层加app组件 */
 ReactDOM.render(
 
   <Router>
-
+    <Switch>
+      <Route path="/admin" render={routeProps=><App {...routeProps} />} />
       {mainRoutes.map(route => {
         return <Route key={route.path} {...route} />
       })}
-
+      <Redirect to="/404"></Redirect>
+    </Switch>
   </Router>
   ,
   document.getElementById('root')
