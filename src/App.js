@@ -9,7 +9,7 @@ export default function App() {
     return (
 
         <Frame>
-            \
+            
             <Switch>
                 {adminRoutes.map(route => {
                     return <Route key={route.path} path={route.path} exact={route.exact} render={
