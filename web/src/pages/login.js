@@ -3,11 +3,17 @@ import { Form, Input, Button, Checkbox, Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { setToken } from '../utils/auth'
 import './login.scss'
+import http from '../utils/request'
+
 export default function Login(props) {
     const onFinish = values => {
         console.log('Received values of form: ', values);
-        setToken(values.username)
-        props.history.push('/admin')
+        http.post('login', values).then(res => {
+            setToken(res.token)
+            props.history.push('/admin')
+        })
+        // setToken(values.username)
+        // props.history.push('/admin')
     };
 
     const onFinishFailed = errorInfo => {
