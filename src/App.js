@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { adminRoutes } from './routes';
 import Frame from './components/Frame/index'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { isLogined } from './utils/auth'
 import './App.scss'
 
 
 export default function App() {
-    return (
+    return (isLogined() ?//判断用户是否登录
 
         <Frame>
-            
             <Switch>
                 {adminRoutes.map(route => {
                     return <Route key={route.path} path={route.path} exact={route.exact} render={
@@ -18,24 +18,11 @@ export default function App() {
                         }
                     } />
                 })}
+                <Redirect to={adminRoutes[0].path} from="/admin"></Redirect>
+                <Redirect to="/404"></Redirect>
             </Switch>
-            {/* <Switch>
-                {adminRoutes.map(route => {
-                    return (
-                        <Route key={route.path}
-                            path={route.path}
-                            exact={route.exact}
-                            render={routeProps => {
-                                return <route.component {...routeProps} />
-                            }}
-                        />)
-
-                })}
-
-            </Switch>
-            <Redirect to="/404"></Redirect> */}
-
-        </Frame>
+        </Frame> :
+        <Redirect to="/login"></Redirect>
     )
 }
 // export default function App() {
