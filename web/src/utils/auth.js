@@ -1,14 +1,14 @@
 export function getToken() {
-    return localStorage.getItem("token")
+    return sessionStorage.getItem("token")
 }
 export function setToken(token) {
-    localStorage.setItem('token', token)
+    sessionStorage.setItem('token', token)
 }
 export function clearToken() {
-    localStorage.removeItem('token')
+    sessionStorage.removeItem('token')
 }
 export function isLogined() {
-    if (localStorage.getItem('token')) {
+    if (sessionStorage.getItem('token')) {
         return true
     }
     return false

@@ -9,7 +9,7 @@ export default function Login(props) {
     const onFinish = values => {
         console.log('Received values of form: ', values);
         http.post('login', values).then(res => {
-            setToken(res.token)
+            setToken(res.data.token)
             props.history.push('/admin')
         })
         // setToken(values.username)

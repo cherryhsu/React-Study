@@ -35,14 +35,14 @@ module.exports = app => {
         if (req.Model.modelName === 'Category') {
             queryOptions.populate = 'parent'
         }
-        const data = await req.Model.find().setOptions(queryOptions).limit(10)//查询,限制10条,populate关联字段对象
+        const data = await req.Model.find().setOptions(queryOptions).limit(50)//查询,限制10条,populate关联字段对象
         // const data = await req.Model.find().populate('parent').limit(10)//查询,限制10条,populate关联字段对象
         res.send(data)//将结果发送到前端
     })
 
     //资源详情
     router.get('/:id', authMiddleware(), async (req, res) => {
-        const data = await req.Model.findById(req.params.id)//查询根据id
+        const data= await req.Model.findById(req.params.id)//查询根据id
         res.send(data)//将结果发送到前端
     })
     app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
