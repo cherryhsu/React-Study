@@ -56,11 +56,14 @@ import http from '../../../utils/request'
 export default function List(props) {
   //组件初始化时获取数据
   useEffect(() => {
+    loadData()
+  }, []);
+  const loadData = () => {
     http.get("rest/items").then(res => {
       setDaraSource(res.data)
       setTotal(res.data.length)
     })
-  }, []);
+  }
   const [dataSource, setDaraSource] = useState([])
   const [total, setTotal] = useState(0)
   // const dataSource = [
@@ -100,10 +103,15 @@ export default function List(props) {
       title: '操作',
       render: (text, record, index) => {
         return <div>
-          <Button type="primary" size="small" onClick={()=>{props.history.push(`/admin/products/edit/${record._id}`)}}>修改</Button>
+          <Button type="primary" size="small" onClick={() => { props.history.push(`/admin/products/edit/${record._id}`) }}>修改</Button>
           <Popconfirm
             title="确定删除此项?"
-            onConfirm={() => { console.log("用户确认删除") }}
+            onConfirm={() => {
+              console.log("用户确认删除")
+              http.delete(`rest/items/${record._id}`).then(res => {
+                loadData()
+              })
+            }}
             onCancel={() => { console.log("用户取消删除") }}
             okText="确认"
             cancelText="取消"
