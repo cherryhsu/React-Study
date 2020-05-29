@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Dropdown, Avatar } from 'antd';
+import { Layout, Menu, Dropdown, Avatar, Badge } from 'antd';
 import logo from './logo.jpg'
 import { adminRoutes } from '../../routes'
 import { withRouter } from 'react-router-dom'
@@ -13,6 +13,9 @@ const routes = adminRoutes.filter(route => route.isShow)
 
 function Index(props) {
     const menu = (<Menu onClick={(p) => {
+        if (p.key == 'noti') {
+            props.history.push('/admin/notices')
+        }
         if (p.key == 'lgOut') {
             clearToken()
             props.history.push('/login')
@@ -32,7 +35,7 @@ function Index(props) {
                 <Dropdown overlay={menu}>
 
                     <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                        <Avatar style={{ background: "#00a2ae" }}>C</Avatar> 超级管理员 <DownOutlined />
+                        <Avatar style={{ background: "#00a2ae" }}>C</Avatar>   <Badge dot>超级管理员</Badge> <DownOutlined />
                     </a>
                 </Dropdown>
             </Header>

@@ -21,6 +21,7 @@ import Index from "./pages/admin/dashboard/index"
 import ProductList from "./pages/admin/products/List"
 import ProductEdit from "./pages/admin/products/Edit"
 import PageNotFind from "./pages/404"
+import Notices from "./pages/admin/notices/index"
 import { IconMap } from "antd/lib/result"
 import {
     AreaChartOutlined,
@@ -51,4 +52,8 @@ export const adminRoutes = [{
     path: '/admin/products/edit/:id?',//id为可选参数
     component: ProductEdit,
     isShow: false,
+},{
+    path:'/admin/notices',
+    component:Notices,
+    isShow:false
 }]

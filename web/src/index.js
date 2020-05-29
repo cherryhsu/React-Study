@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import store from './store'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import './index.css';
 import App from './App'
@@ -8,17 +10,18 @@ import * as serviceWorker from './serviceWorker';
 
 /* 打开以admin为路由的组件时 外层加app组件 */
 ReactDOM.render(
-
-  <Router>
-    <Switch>
-      <Route path="/admin" render={routeProps=><App {...routeProps} />} />
-      {mainRoutes.map(route => {
-        return <Route key={route.path} {...route} />
-      })}
-       <Redirect to="/admin" from="/"></Redirect>
-      <Redirect to="/404"></Redirect>
-    </Switch>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route path="/admin" render={routeProps => <App {...routeProps} />} />
+        {mainRoutes.map(route => {
+          return <Route key={route.path} {...route} />
+        })}
+        <Redirect to="/admin" from="/"></Redirect>
+        <Redirect to="/404"></Redirect>
+      </Switch>
+    </Router>
+  </Provider>
   ,
   document.getElementById('root')
 );
