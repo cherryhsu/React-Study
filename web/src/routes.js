@@ -20,12 +20,15 @@ import Login from "./pages/login"
 import Index from "./pages/admin/dashboard/index"
 import ProductList from "./pages/admin/products/List"
 import ProductEdit from "./pages/admin/products/Edit"
+import HeroList from './pages/admin/heros/List'
+import HeroEdit from './pages/admin/heros/Edit'
 import PageNotFind from "./pages/404"
 import Notices from "./pages/admin/notices/index"
 import { IconMap } from "antd/lib/result"
 import {
     AreaChartOutlined,
     ShopOutlined,
+    UsergroupAddOutlined
 } from '@ant-design/icons';
 export const mainRoutes = [{
     path: "/login",
@@ -46,14 +49,25 @@ export const adminRoutes = [{
     component: ProductList,
     isShow: true,
     exact: true,
-    title: "商品管理",
+    title: "物品管理",
     icon: ShopOutlined
 }, {
     path: '/admin/products/edit/:id?',//id为可选参数
     component: ProductEdit,
     isShow: false,
-},{
-    path:'/admin/notices',
-    component:Notices,
-    isShow:false
+}, {
+    path: '/admin/heros',
+    component: HeroList,
+    isShow: true,
+    exact: true,
+    title: "英雄管理",
+    icon: UsergroupAddOutlined
+}, {
+    path: '/admin/heros/edit/:id?',//id为可选参数
+    component: HeroEdit,
+    isShow: false,
+}, {
+    path: '/admin/notices',
+    component: Notices,
+    isShow: false
 }]
